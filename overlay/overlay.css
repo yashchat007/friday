@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+#root {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+button.orb-hit-target {
+  background: transparent !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Rectangular box-shadows paint opaque regions on transparent Electron windows (Windows). */
+.orb-sphere-glow {
+  filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.42))
+    drop-shadow(0 0 6px rgba(40, 207, 255, 0.28));
+}

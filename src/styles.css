@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: #03070c;
+}
+
+.hud-grid {
+  background-color: #03070c;
+  background-image:
+    linear-gradient(rgba(40, 207, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40, 207, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.floor-glow::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(40, 207, 255, 0.06), transparent 70%);
+}
+
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(40, 207, 255, 0.03) 2px,
+    rgba(40, 207, 255, 0.03) 3px
+  );
+}
+
+.glass-panel {
+  background: linear-gradient(145deg, rgba(8, 15, 30, 0.75), rgba(4, 10, 22, 0.55));
+  backdrop-filter: blur(16px);
+}
+
+.reactor-bloom {
+  filter: drop-shadow(0 0 28px rgba(40, 207, 255, 0.35))
+    drop-shadow(0 0 64px rgba(56, 189, 248, 0.18));
+}

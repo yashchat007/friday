@@ -1,0 +1,9 @@
+node_modules
+out
+dist
+*.log
+.env
+.env.local
+.DS_Store
+.repair-backup-*/
+tsc-errors.txt

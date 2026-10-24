@@ -1,0 +1,14 @@
+appId: com.friday.agent
+productName: FRIDAY
+npmRebuild: false
+directories:
+  output: dist
+files:
+  - out/**/*
+  - package.json
+asarUnpack:
+  - node_modules/better-sqlite3/**
+win:
+  signAndEditExecutable: false
+  target:
+    - nsis
