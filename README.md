@@ -80,6 +80,9 @@ Unsigned builds use `signAndEditExecutable: false` in `electron-builder.yml`.
 
 ## Security
 
+See [SECURITY.md](./SECURITY.md) for reporting and secret-handling guidance.
+
 - File tools are limited to allowed folders (profile, Desktop, Documents, Downloads by default).
 - `run_powershell` blocks a small set of dangerous patterns; always requires approval.
-- Settings (including optional Gemini keys) are stored locally via `electron-store`.
+- Optional API keys (Gemini, OpenWeather) stay in your local `electron-store` file—**never commit** `.env`, `friday.json`, or memory exports.
+- The UI never receives raw API key values over IPC; keys are redacted in `friday:get-settings`.

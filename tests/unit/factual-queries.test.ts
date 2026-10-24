@@ -29,7 +29,7 @@ describe('factual queries', () => {
 
   it('admits when no matching memory exists', () => {
     const reply = buildDeterministicConversationResponse('Do you remember lunch with Aaradhya?', [
-      'User name is Yash'
+      'User name is Alex'
     ])
     expect(reply).toMatch(/don't have a saved fact/i)
     expect(reply).not.toMatch(/Aaradhya at/i)

@@ -19,6 +19,7 @@ import { createChatWindow } from './windows'
 import { createTray } from './tray'
 import { checkOllamaStatus, warmOllamaModel } from './agent/providers/ollama-client'
 import { resolveOllamaModel } from './agent/providers/ollama-options'
+import { applySettingsPatch, redactSettingsForRenderer } from '../../shared/settings-secrets'
 import type { AgentEvent, FridaySettings, SendTaskPayload } from '../../shared/types/ipc'
 import { runQuickAction, type QuickActionId } from './quick-actions'
 import { readSystemMetrics } from './system/system-metrics'
@@ -325,9 +326,9 @@ async function bootstrap(): Promise<void> {
     }
   })
 
-  ipcMain.handle('friday:get-settings', () => getSettings())
+  ipcMain.handle('friday:get-settings', () => redactSettingsForRenderer(getSettings()))
   ipcMain.handle('friday:set-settings', (_e, patch: Partial<FridaySettings>) => {
-    const next = setSettings(patch)
+    const next = setSettings(applySettingsPatch(patch))
     onSettingsChanged()
     if (patch.allowedPaths && executor) {
       executor.setAllowedPaths(patch.allowedPaths)
@@ -341,7 +342,7 @@ async function bootstrap(): Promise<void> {
     } else if (patch.floatingOrbEnabled === true) {
       showOrb(false)
     }
-    return next
+    return redactSettingsForRenderer(next)
   })
   ipcMain.handle('friday:get-messages', () => memory?.recentMessages() ?? [])
   ipcMain.handle('friday:get-memories', () => memory?.listFacts() ?? [])

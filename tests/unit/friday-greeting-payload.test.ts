@@ -3,6 +3,7 @@ import { buildOllamaConversationMessages } from '../../electron/main/agent/chat-
 import { shouldIncludeConversationHistory } from '../../electron/main/agent/conversation-history-policy'
 import { conversationSystemWithFacts } from '../../electron/main/agent/system-prompts'
 import { estimatePromptChars } from '../../electron/main/agent/chat-context'
+import { SAMPLE_USER_FACT } from '../fixtures/sample-user'
 
 describe('FRIDAY greeting Ollama payload', () => {
   it('sends only the user turn for social greetings (matches benchmark-minimal path)', () => {
@@ -12,7 +13,7 @@ describe('FRIDAY greeting Ollama payload', () => {
     const messages = buildOllamaConversationMessages({ context: [], userMessage: greeting })
     expect(messages).toEqual([{ role: 'user', content: greeting }])
 
-    const system = conversationSystemWithFacts(["User's name is Yash"])
+    const system = conversationSystemWithFacts([SAMPLE_USER_FACT])
     const chars = estimatePromptChars(system, messages)
     expect(chars).toBeLessThan(1100)
   })

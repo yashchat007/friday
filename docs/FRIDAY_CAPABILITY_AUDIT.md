@@ -1,7 +1,7 @@
 # FRIDAY Capability Audit
 
 **Audit date:** 2026-03-19  
-**Scope:** `C:\Users\Yash\Desktop\friday` (read-only code inspection + automated test run)  
+**Scope:** FRIDAY repository root (read-only code inspection + automated test run)  
 **Auditor:** Cursor agent (no Windows GUI session, no live Ollama/Chrome/WhatsApp interaction during this audit)
 
 ---

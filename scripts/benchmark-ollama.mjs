@@ -54,7 +54,7 @@ async function chat(body) {
   return { totalMs: Math.round(performance.now() - started), ttftMs: ttft, stats }
 }
 
-const bloatedUser = `Recent conversation:\n${'assistant: ' + '[GoogleGenerativeAI Error]: x'.repeat(40)}\nuser: Hey FRIDAY, how are you?\n\nKnown facts:\n- User's name is Yash\n\nHey FRIDAY, how are you?`
+const bloatedUser = `Recent conversation:\n${'assistant: ' + '[GoogleGenerativeAI Error]: x'.repeat(40)}\nuser: Hey FRIDAY, how are you?\n\nKnown facts:\n- User's name is Alex\n\nHey FRIDAY, how are you?`
 
 const cases = [
   {

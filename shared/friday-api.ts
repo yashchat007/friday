@@ -1,3 +1,4 @@
+import type { FridaySettingsForRenderer } from './settings-secrets'
 import type {
   AgentEvent,
   ChatMessage,
@@ -10,8 +11,8 @@ import type {
 
 /** API exposed on `window.friday` via preload `contextBridge`. */
 export interface FridayApi {
-  getSettings: () => Promise<FridaySettings>
-  setSettings: (patch: Partial<FridaySettings>) => Promise<FridaySettings>
+  getSettings: () => Promise<FridaySettingsForRenderer>
+  setSettings: (patch: Partial<FridaySettings>) => Promise<FridaySettingsForRenderer>
   getMessages: () => Promise<ChatMessage[]>
   getMemories: () => Promise<UserMemoryFact[]>
   updateMemory: (id: string, fact: string) => Promise<boolean>

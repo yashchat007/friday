@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { classifyUserIntent } from '../../electron/main/agent/intent-router'
+import { SAMPLE_USER_NAME } from '../fixtures/sample-user'
 
 describe('classifyUserIntent', () => {
   it('treats greetings as conversation', () => {
@@ -8,7 +9,7 @@ describe('classifyUserIntent', () => {
   })
 
   it('treats recall questions as conversation', () => {
-    expect(classifyUserIntent('My name is Yash. What is my name?')).toBe('conversation')
+    expect(classifyUserIntent(`My name is ${SAMPLE_USER_NAME}. What is my name?`)).toBe('conversation')
   })
 
   it('treats simple math questions as conversation', () => {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { FridaySettingsForRenderer } from '../../../shared/settings-secrets'
 import type { FridaySettings, OllamaStatus } from '../../../shared/types/ipc'
 import { PersonalMemoryPanel } from './PersonalMemoryPanel'
 
@@ -7,11 +8,12 @@ export function SettingsPanel({
   onSave,
   onClose
 }: {
-  settings: FridaySettings
+  settings: FridaySettingsForRenderer
   onSave: (patch: Partial<FridaySettings>) => Promise<FridaySettings | void>
   onClose: () => void
 }) {
   const [draft, setDraft] = useState(settings)
+  const [geminiKeyDirty, setGeminiKeyDirty] = useState(false)
   const [status, setStatus] = useState<OllamaStatus | null>(null)
   const [checking, setChecking] = useState(false)
 
@@ -76,8 +78,15 @@ export function SettingsPanel({
               type="password"
               className="w-full rounded-lg bg-black/40 border border-white/10 px-3 py-2"
               value={draft.geminiApiKey ?? ''}
-              onChange={(e) => setDraft({ ...draft, geminiApiKey: e.target.value })}
-              placeholder="Google AI Studio key"
+              onChange={(e) => {
+                setGeminiKeyDirty(true)
+                setDraft({ ...draft, geminiApiKey: e.target.value })
+              }}
+              placeholder={
+                settings.geminiApiKeyConfigured && !geminiKeyDirty
+                  ? 'Key saved locally (type to replace)'
+                  : 'Google AI Studio key'
+              }
             />
           </label>
           <label className="block space-y-1">
@@ -269,7 +278,11 @@ export function SettingsPanel({
       <button
         type="button"
         className="w-full rounded-lg bg-cyan-500/80 hover:bg-cyan-400 py-2 text-slate-950 font-medium"
-        onClick={() => void onSave(draft)}
+        onClick={() => {
+          const patch = { ...draft }
+          if (!geminiKeyDirty) delete patch.geminiApiKey
+          void onSave(patch)
+        }}
       >
         Save
       </button>

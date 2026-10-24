@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { isSensitiveFact, mergeFactList, shouldForgetFromMessage } from '../../electron/main/memory/memory-facts'
+import { SAMPLE_USER_FACT, SAMPLE_USER_NAME } from '../fixtures/sample-user'
 
 describe('memory facts', () => {
   it('deduplicates facts by normalized key', () => {
-    const first = mergeFactList([], "User's name is Yash")
-    const second = mergeFactList(first.facts, "User's name is yash")
+    const first = mergeFactList([], SAMPLE_USER_FACT)
+    const second = mergeFactList(first.facts, `User's name is ${SAMPLE_USER_NAME.toLowerCase()}`)
     expect(second.facts).toHaveLength(1)
     expect(second.added).toBe(false)
   })

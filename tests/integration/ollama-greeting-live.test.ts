@@ -18,7 +18,7 @@ describe.runIf(runLive)('Ollama live greeting latency', () => {
     const task = await loop.runTask({
       userMessage: 'Hey FRIDAY, how are you?',
       provider: testOllamaProvider(),
-      memoryFacts: ["User's name is Yash"],
+      memoryFacts: ["User's name is Alex"],
       contextMessages: Array.from({ length: 30 }, (_, i) => ({
         id: `m${i}`,
         role: i % 2 === 0 ? 'user' : 'assistant',

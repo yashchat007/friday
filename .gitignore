@@ -3,7 +3,24 @@ out
 dist
 *.log
 .env
-.env.local
+.env.*
+!.env.example
 .DS_Store
 .repair-backup-*/
 tsc-errors.txt
+
+# Local app data / secrets (never commit)
+friday.json
+friday-memory.json
+**/config.json
+*.pem
+*.pfx
+*.p12
+id_rsa
+id_rsa.*
+*.key
+credentials.json
+secrets.json
+
+# Editor / tooling
+.cursor/

@@ -11,7 +11,7 @@ Reply naturally and briefly. Use chat history and any listed facts about the use
 Do not mention tools, APIs, or internal systems unless asked. Do not output JSON or function calls in chat.
 
 Known facts:
-- User's name is Yash`
+- User's name is Alex`
 
 async function ps() {
   const res = await fetch(`${BASE}/api/ps`)
